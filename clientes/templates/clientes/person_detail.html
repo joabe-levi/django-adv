@@ -1,0 +1,19 @@
+<h1>Person Detail</h1>
+
+<p>Nome: {{ object.first_name }}</p>
+<p>Sobrenome: {{ object.last_name }}</p>
+<p>Documento: {{ object.doc }}</p>
+<h2>Vendas</h2>
+{% for venda in vendas %}
+    <p>Venda id: {{ venda.id }}</p>
+    <h3>Lista de Produtos</h3>
+    <ul>
+        {% for produto in venda.produtos.all %}
+            <li>{{ produto.id }} - {{ produto.descricao }}</li>
+        {% endfor %}
+    </ul>
+{% endfor %}
+<h3>{{ timezone|date }}</h3>
+
+<a href="{% url 'person_update_cbv' object.id %}">Update</a>
+<a href="{% url 'person_delete_cbv' object.id %}">Delete</a>
